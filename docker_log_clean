@@ -1,0 +1,12 @@
+#!/usr/bin/python3
+# -*- coding: UTF-8 -*-
+
+import os
+import sys
+import json
+
+data = os.popen('docker inspect ' + sys.argv[1]).read()
+obj = json.loads(data)
+log_path = obj[0]['LogPath']
+os.system('cat /dev/null > ' + log_path)
+os.system('ls -l ' + log_path)
